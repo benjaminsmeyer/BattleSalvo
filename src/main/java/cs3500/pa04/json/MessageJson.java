@@ -9,16 +9,16 @@ import com.fasterxml.jackson.databind.JsonNode;
  * <p>
  * <code>
  * {
- *   "name": "method name",
+ *   "method-name": "method name",
  *   "arguments": {}
  * }
  * </code>
  * </p>
  *
- * @param messageName the name of the server method request
- * @param arguments   the arguments passed along with the message formatted as a Json object
+ * @param methodName the method name of the server method request
+ * @param arguments  the arguments passed along with the message formatted as a Json object
  */
 public record MessageJson(
-    @JsonProperty("name") String messageName,
+    @JsonProperty("method-name") String methodName,
     @JsonProperty("arguments") JsonNode arguments) {
 }

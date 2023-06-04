@@ -213,8 +213,8 @@ public class BoardGen {
   /**
    * Sets the label for the x and y spot of the board.
    *
-   * @param x the x spot
-   * @param y the y spot
+   * @param x the row spot
+   * @param y the column spot
    * @param label the label for the board
    * @param battleShip the ship that takes the spot
    */

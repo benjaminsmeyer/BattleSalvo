@@ -3,6 +3,13 @@ package cs3500.pa04.client;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import cs3500.pa03.model.player.ArtificialIntelligence;
+import cs3500.pa03.model.player.PlayerExtend;
+import cs3500.pa04.json.GuessJson;
+import cs3500.pa04.json.HintJson;
+import cs3500.pa04.json.JsonUtils;
+import cs3500.pa04.json.MessageJson;
+import cs3500.pa04.json.WinJson;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
@@ -16,7 +23,7 @@ public class ProxyDealer {
   private final Socket server;
   private final InputStream in;
   private final PrintStream out;
-  private final PlayerController player;
+  private final PlayerExtend player;
   private final ObjectMapper mapper = new ObjectMapper();
 
   private static final JsonNode VOID_RESPONSE =
@@ -26,14 +33,13 @@ public class ProxyDealer {
    * Construct an instance of a ProxyPlayer.
    *
    * @param server the socket connection to the server
-   * @param player the instance of the player
    * @throws IOException if
    */
-  public ProxyDealer(Socket server, PlayerController player) throws IOException {
+  public ProxyDealer(Socket server) throws IOException {
     this.server = server;
     this.in = server.getInputStream();
     this.out = new PrintStream(server.getOutputStream());
-    this.player = player;
+    this.player = new ArtificialIntelligence("BEN");
   }
 
 
@@ -64,7 +70,7 @@ public class ProxyDealer {
    * @param message the MessageJSON used to determine what the server has sent
    */
   private void delegateMessage(MessageJson message) {
-    String name = message.messageName();
+    String name = message.methodName();
     JsonNode arguments = message.arguments();
 
     if ("hint".equals(name)) {

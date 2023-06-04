@@ -22,6 +22,10 @@ jacocoTestReport {
     dependsOn test // make sure that test task run before reports are run.
 }
 
+run {
+    standardInput = System.in
+}
+
 group 'cs3500.project'
 version '1.0-SNAPSHOT'
 
