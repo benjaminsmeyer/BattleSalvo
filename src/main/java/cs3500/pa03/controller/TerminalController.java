@@ -18,7 +18,7 @@ import java.util.Random;
 /**
  * Controls the game for BattleSalvo
  */
-public class GameController {
+public class TerminalController {
   private static final int HIGHEST = 15;
   private static final int LOWEST = 6;
   private final int[] fleetSize;
@@ -35,7 +35,7 @@ public class GameController {
    * @param readable   the readable for input
    * @param random the random seed
    */
-  public GameController(Appendable appendable, Readable readable, Random random) {
+  public TerminalController(Appendable appendable, Readable readable, Random random) {
     this.viewer = new TerminalView(appendable, readable);
     this.height = 0;
     this.width = 0;

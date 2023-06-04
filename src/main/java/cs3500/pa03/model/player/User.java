@@ -1,6 +1,6 @@
 package cs3500.pa03.model.player;
 
-import cs3500.pa03.controller.GameController;
+import cs3500.pa03.controller.TerminalController;
 import cs3500.pa03.model.coords.Coord;
 import cs3500.pa03.model.coords.Coords;
 import cs3500.pa03.model.game.GameResult;
@@ -66,7 +66,7 @@ public class User extends PlayerImpl {
       String input = view.askUser(message);
       String[] values = input.split(" ");
       int[] spot = new int[2];
-      GameController.checkExit(input);
+      TerminalController.checkExit(input);
       try {
         if (values.length != spot.length) {
           throw new IllegalArgumentException("Invalid amount of shots.");
@@ -98,7 +98,7 @@ public class User extends PlayerImpl {
    * @throws IOException when it is unable to send data
    */
   private void handleInvalidArg(String input) throws IOException {
-    GameController.checkExit(input);
+    TerminalController.checkExit(input);
     view.sendMessage(
         "Invalid arguments."
             + " It must be two numbers (e.g. 2 1"
