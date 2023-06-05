@@ -115,5 +115,27 @@ public class ShipImpl implements Ship {
   public boolean shipInWater() {
     return currentSize > 0;
   }
+
+  /**
+   * Returns ship position if it is VERTICAL or HORIZONTAL
+   *
+   * @return the string of the position
+   */
+  public String shipDirection() {
+    String vertical = "VERTICAL";
+    String horizontal = "HORIZONTAL";
+    int count = 0;
+    int currentX = coords.get(0).getAxisX();
+    for (Coord coord : coords) {
+      if (coord.getAxisX() == currentX) {
+        count++;
+      }
+    }
+    if (count == coords.size()) {
+      return horizontal;
+    } else {
+      return vertical;
+    }
+  }
 }
 

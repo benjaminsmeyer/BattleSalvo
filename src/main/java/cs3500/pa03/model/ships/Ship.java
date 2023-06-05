@@ -75,4 +75,11 @@ public interface Ship {
    * @return the list of the ships coords
    */
   List<Coord> getPositions();
+
+  /**
+   * Returns ship position if it is VERTICAL or HORIZONTAL
+   *
+   * @return the string of the position
+   */
+  String shipDirection();
 }
