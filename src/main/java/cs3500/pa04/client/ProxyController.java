@@ -6,9 +6,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import cs3500.pa03.model.coords.Coord;
 import cs3500.pa03.model.player.ArtificialIntelligence;
 import cs3500.pa03.model.player.PlayerExtend;
+import cs3500.pa03.model.ships.Ship;
+import cs3500.pa04.json.FleetJson;
+import cs3500.pa04.json.JoinJson;
 import cs3500.pa04.json.ReportDamageJson;
 import cs3500.pa04.json.JsonUtils;
 import cs3500.pa04.json.MessageJson;
+import cs3500.pa04.json.SetupPrevJson;
+import cs3500.pa04.json.ShipJson;
 import cs3500.pa04.json.SuccessfulHitsJson;
 import cs3500.pa04.json.TakeShotsJson;
 import cs3500.pa04.json.EndGameJson;
@@ -16,6 +21,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +37,9 @@ public class ProxyController {
 
   private static final JsonNode VOID_RESPONSE =
       new ObjectMapper().getNodeFactory().textNode("void");
+  private static final String GAME_TYPE_SINGLE = "SINGLE";
+  private static final String GAME_TYPE_MULTI = "MULTI";
+  private static final String name = "benjaminsmeyer";
 
   /**
    * Construct an instance of a ProxyPlayer.
@@ -42,7 +51,7 @@ public class ProxyController {
     this.server = server;
     this.in = server.getInputStream();
     this.out = new PrintStream(server.getOutputStream());
-    this.player = new ArtificialIntelligence("BEN");
+    this.player = new ArtificialIntelligence("benjaminsmeyer");
   }
 
 
@@ -65,6 +74,27 @@ public class ProxyController {
     }
   }
 
+  private void handleSetup(JsonNode arguments) {
+    SetupPrevJson args = this.mapper.convertValue(arguments, SetupPrevJson.class);
+    List<Ship> guess = player.setup(args.height(), args.width(), args.specs());
+
+    ShipJson[] shipCoords = getPlayerShips(guess);
+
+    FleetJson response = new FleetJson(shipCoords);
+
+    JsonNode jsonResponse = JsonUtils.serializeRecord(response);
+    this.out.println(jsonResponse);
+  }
+
+  private ShipJson[] getPlayerShips(List<Ship> ships) {
+    List<ShipJson> list = new ArrayList<>();
+    for (Ship ship : ships) {
+      ShipJson json = new ShipJson(ship.getPositions().get(0), ship.getOriginalSize(), ship.shipDirection());
+      list.add(json);
+    }
+    return list.toArray(ShipJson[]::new);
+  }
+
 
   /**
    * Determines the type of request the server has sent ("guess" or "win") and delegates to the
@@ -77,9 +107,9 @@ public class ProxyController {
     JsonNode arguments = message.arguments();
 
     if ("join".equals(name)) {
-      // handleJoin(arguments);
+      handleJoin(arguments);
     } else if ("setup".equals(name)) {
-      // handleSetup(arguments);
+      handleSetup(arguments);
     } else if ("take-shots".equals(name)) {
       handleTakeShots(arguments);
     } else if ("report-damage".equals(name)) {
@@ -133,6 +163,12 @@ public class ProxyController {
     ReportDamageJson reportDamageJson = this.mapper.convertValue(arguments, ReportDamageJson.class);
     List<Coord> damageCoords = player.reportDamage(reportDamageJson.volley());
     ReportDamageJson response = new ReportDamageJson(damageCoords);
+    JsonNode jsonResponse = JsonUtils.serializeRecord(response);
+    this.out.println(jsonResponse);
+  }
+
+  private void handleJoin(JsonNode arguments) {
+    JoinJson response = new JoinJson(name, GAME_TYPE_SINGLE);
     JsonNode jsonResponse = JsonUtils.serializeRecord(response);
     this.out.println(jsonResponse);
   }
