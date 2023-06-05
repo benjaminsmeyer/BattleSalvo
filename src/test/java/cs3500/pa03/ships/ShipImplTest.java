@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import cs3500.pa03.model.coords.Coord;
-import cs3500.pa03.model.coords.Coords;
 import cs3500.pa03.model.ships.Ship;
 import cs3500.pa03.model.ships.ShipImpl;
 import cs3500.pa03.model.ships.ShipType;
@@ -109,10 +108,10 @@ class ShipImplTest {
    */
   @Test
   void getPositionsTest() {
-    Coord coord = new Coords(1, 1, ship);
+    Coord coord = new Coord(1, 1, ship);
     ship.addCoord(coord);
     assertTrue(ship.getPositions().contains(coord));
-    coord = new Coords(2, 1, ship);
+    coord = new Coord(2, 1, ship);
     assertFalse(ship.getPositions().contains(coord));
   }
 
@@ -121,10 +120,10 @@ class ShipImplTest {
    */
   @Test
   void addCoordTest() {
-    Coord coord = new Coords(1, 1, ship);
+    Coord coord = new Coord(1, 1, ship);
     ship.addCoord(coord);
     assertTrue(ship.getPositions().contains(coord));
-    coord = new Coords(2, 1, ship);
+    coord = new Coord(2, 1, ship);
     assertFalse(ship.getPositions().contains(coord));
   }
 }

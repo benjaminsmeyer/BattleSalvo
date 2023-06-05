@@ -1,17 +1,10 @@
 package cs3500.pa04;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import cs3500.pa03.controller.TerminalController;
-import cs3500.pa04.client.Coord;
-import cs3500.pa04.client.ProxyDealer;
-import cs3500.pa04.json.MessageJson;
-import cs3500.pa04.json.VolleyJSON;
+import cs3500.pa04.client.ProxyController;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -31,8 +24,8 @@ public class Driver {
       throws IOException, IllegalStateException {
     Socket server = new Socket(host, Integer.parseInt(port));
 
-    ProxyDealer proxyDealer = new ProxyDealer(server);
-    proxyDealer.run();
+    ProxyController proxyController = new ProxyController(server);
+    proxyController.run();
   }
 
   /**
@@ -44,20 +37,6 @@ public class Driver {
    * @param args The expected parameters are the server's host and port
    */
   public static void main(String[] args) {
-    try {
-      List<Coord> coords = List.of(new Coord(1, 1), new Coord(2, 1));
-      ObjectMapper mapper = new ObjectMapper();
-      VolleyJSON volleyJSON = new VolleyJSON(coords);
-      System.out.println(mapper.writeValueAsString(volleyJSON));
-      System.out.println(mapper.writeValueAsString(new Coord(30, 30)));
-
-      JsonNode node = mapper.convertValue(volleyJSON, JsonNode.class);
-      VolleyJSON volleyJSON2 = mapper.convertValue(node, VolleyJSON.class);
-      MessageJson messageJson = new MessageJson("take-shots", node);
-    } catch (JsonProcessingException e) {
-      System.out.println("REMOVE THIS");
-    }
-
     if (args.length == 0) {
       runTerminalGame();
     } else {

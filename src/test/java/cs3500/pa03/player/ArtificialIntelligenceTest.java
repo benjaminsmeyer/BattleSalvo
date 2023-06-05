@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import cs3500.pa03.model.coords.Coord;
-import cs3500.pa03.model.coords.Coords;
 import cs3500.pa03.model.game.GameResult;
 import cs3500.pa03.model.player.ArtificialIntelligence;
 import cs3500.pa03.model.player.PlayerExtend;
@@ -116,11 +115,11 @@ class ArtificialIntelligenceTest {
     specifications.put(ShipType.Submarine, 1);
     user.setup(6, 6, specifications);
     List<Coord> coords = new ArrayList<>();
-    Coord coord = new Coords(1, 1);
+    Coord coord = new Coord(1, 1);
     coords.add(coord);
-    coord = new Coords(2, 1);
+    coord = new Coord(2, 1);
     coords.add(coord);
-    coord = new Coords(2, 3);
+    coord = new Coord(2, 3);
     coords.add(coord);
     user.reportDamage(coords);
   }
@@ -137,11 +136,11 @@ class ArtificialIntelligenceTest {
     specifications.put(ShipType.Submarine, 1);
     user.setup(6, 6, specifications);
     List<Coord> coords = new ArrayList<>();
-    Coord coord = new Coords(1, 1);
+    Coord coord = new Coord(1, 1);
     coords.add(coord);
-    coord = new Coords(2, 1);
+    coord = new Coord(2, 1);
     coords.add(coord);
-    coord = new Coords(2, 3);
+    coord = new Coord(2, 3);
     coords.add(coord);
     user.successfulHits(coords);
     assertTrue(user.opponentToString().contains("H"));

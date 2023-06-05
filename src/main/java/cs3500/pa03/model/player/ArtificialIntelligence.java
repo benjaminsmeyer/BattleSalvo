@@ -1,7 +1,6 @@
 package cs3500.pa03.model.player;
 
 import cs3500.pa03.model.coords.Coord;
-import cs3500.pa03.model.coords.Coords;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -35,7 +34,7 @@ public class ArtificialIntelligence extends PlayerImpl {
       int x = random.nextInt(0, width);
       int y = random.nextInt(0, height);
       if (validShot(x, y)) {
-        Coord coord = new Coords(x, y);
+        Coord coord = new Coord(x, y);
         coords.add(coord);
         opponentBoard[y][x] = MISS;
         count--;

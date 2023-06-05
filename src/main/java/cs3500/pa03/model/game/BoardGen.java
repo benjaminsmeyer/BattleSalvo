@@ -1,7 +1,6 @@
 package cs3500.pa03.model.game;
 
 import cs3500.pa03.model.coords.Coord;
-import cs3500.pa03.model.coords.Coords;
 import cs3500.pa03.model.coords.Direction;
 import cs3500.pa03.model.ships.Battleship;
 import cs3500.pa03.model.ships.Carrier;
@@ -220,7 +219,7 @@ public class BoardGen {
    */
   private void setCoords(int x, int y, String label, Ship battleShip) {
     board[y][x] = label;
-    Coord location = new Coords(x, y, battleShip);
+    Coord location = new Coord(x, y, battleShip);
     battleShip.addCoord(location);
     coords.put(location.toString(), location);
   }
@@ -234,7 +233,7 @@ public class BoardGen {
    */
   private void setCoords(int x, int y, String label) {
     board[y][x] = label;
-    Coord location = new Coords(x, y);
+    Coord location = new Coord(x, y);
     coords.put(location.toString(), location);
   }
 

@@ -2,7 +2,6 @@ package cs3500.pa03.model.player;
 
 import cs3500.pa03.controller.TerminalController;
 import cs3500.pa03.model.coords.Coord;
-import cs3500.pa03.model.coords.Coords;
 import cs3500.pa03.model.game.GameResult;
 import cs3500.pa03.viewer.Viewer;
 import java.io.IOException;
@@ -77,7 +76,7 @@ public class User extends PlayerImpl {
         int x = spot[0];
         int y = spot[1];
         if (validShot(x, y)) {
-          Coord coord = new Coords(x, y);
+          Coord coord = new Coord(x, y);
           coords.add(coord);
           opponentBoard[y][x] = MISS;
           count++;

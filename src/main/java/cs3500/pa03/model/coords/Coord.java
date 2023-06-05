@@ -1,50 +1,115 @@
 package cs3500.pa03.model.coords;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import cs3500.pa03.model.ships.Ship;
+import java.util.NoSuchElementException;
 
 /**
- * Interface for Coords
+ * Coordinates on the board
  */
-public interface Coord {
+public class Coord {
+  private final int axisX;
+  private final int axisY;
+  private final boolean spotInUse;
+  private final Ship ship;
+  private boolean spotHit;
+  private Direction direction;
+
+  /**
+   * Setups the coords
+   *
+   * @param x the x coordinate
+   * @param y the y coordinate
+   */
+  public Coord(@JsonProperty("x") int x,
+               @JsonProperty("y") int y) {
+    this.axisX = x;
+    this.axisY = y;
+    this.spotInUse = false;
+    this.ship = null;
+    this.spotHit = false;
+  }
+
+  /**
+   * Setups the coords with ship taking the spot
+   *
+   * @param x the x coordinate
+   * @param y the y coordinate
+   * @param ship the ship
+   */
+  public Coord(int x, int y, Ship ship) {
+    this.axisX = x;
+    this.axisY = y;
+    this.spotInUse = true;
+    this.ship = ship;
+    this.spotHit = false;
+  }
+
   /**
    * Gets the X coordinate of the board
    *
    * @return the x coordinate
    */
-  int getAxisX();
+  public int getAxisX() {
+    return axisX;
+  }
 
   /**
    * Gets the Y coordinate of the board
    *
    * @return the y coordinate
    */
-  int getAxisY();
+  public int getAxisY() {
+    return axisY;
+  }
 
   /**
    * Checks if the Coord has been hit
    *
    * @return true if spot has been hit, false otherwise.
    */
-  boolean checkHit();
+  public boolean checkHit() {
+    return spotHit;
+  }
 
   /**
    * Spot has been hit
    */
-  void spotHit();
+  public void spotHit() {
+    spotHit = true;
+    if (checkSpotInUse()) {
+      spotTaken().shipHit();
+    }
+  }
 
   /**
-   * Checks if the spot is in use
+   * Checks if the spot is in use by a ship.
    *
    * @return true if spot is used, false otherwise.
    */
-  boolean checkSpotInUse();
+  public boolean checkSpotInUse() {
+    return spotInUse;
+  }
 
   /**
    * Returns the ship that took the spot
    *
    * @return the ship that took the spot
-   * @throws IllegalArgumentException when ship did not take the spot
+   * @throws NoSuchElementException when ship did not take the spot
    */
-  Ship spotTaken();
-}
+  public Ship spotTaken() throws NoSuchElementException {
+    if (ship == null) {
+      throw new NoSuchElementException("No ship is in this spot.");
+    }
+    return ship;
+  }
 
+  /**
+   * Returns the coordinates.
+   *
+   * @return a string of the coordinates
+   */
+  public String toString() {
+    return String.format("(%d, %d)", axisX, axisY);
+  }
+}
