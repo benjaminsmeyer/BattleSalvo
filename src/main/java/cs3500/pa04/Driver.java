@@ -1,11 +1,15 @@
 package cs3500.pa04;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cs3500.pa03.controller.TerminalController;
-import cs3500.pa04.client.ManualPlayerController;
+import cs3500.pa04.client.Coord;
 import cs3500.pa04.client.ProxyDealer;
+import cs3500.pa04.json.VolleyJSON;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -38,6 +42,16 @@ public class Driver {
    * @param args The expected parameters are the server's host and port
    */
   public static void main(String[] args) {
+    try {
+      List<Coord> coords = List.of(new Coord(1, 1), new Coord(2, 1));
+      ObjectMapper mapper = new ObjectMapper();
+      VolleyJSON volleyJSON = new VolleyJSON(coords);
+      System.out.println(mapper.writeValueAsString(volleyJSON));
+      System.out.println(mapper.writeValueAsString(new Coord(30, 30)));
+    } catch (JsonProcessingException e) {
+      System.out.println("REMOVE THIS");
+    }
+
     if (args.length == 0) {
       runTerminalGame();
     } else {

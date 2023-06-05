@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import cs3500.pa03.model.coords.Coord;
 import cs3500.pa03.model.coords.Coords;
+import cs3500.pa03.model.ships.Carrier;
 import cs3500.pa03.model.ships.Ship;
 import cs3500.pa03.model.ships.ShipImpl;
 import cs3500.pa03.model.ships.ShipType;
@@ -24,7 +25,7 @@ class CarrierTest {
    */
   @BeforeEach
   void setup() {
-    ship = new ShipImpl(ShipType.Carrier);
+    ship = new Carrier();
   }
 
 

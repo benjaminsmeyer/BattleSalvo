@@ -33,7 +33,7 @@ class ControllerTest {
 
     Appendable appendable = new StringBuilder();
     Readable input = new StringReader(startText + restText + "\nexit\n");
-    GameController controller = new GameController(appendable, input, new Random());
+    TerminalController controller = new TerminalController(appendable, input, new Random());
     System.out.println("Before Run Game Method Call");
     controller.runGame();
     System.out.println("After Run Game Method Call");
@@ -72,7 +72,7 @@ class ControllerTest {
 
     Appendable appendable = new StringBuilder();
     Readable input = new StringReader(startText + restText);
-    GameController controller = new GameController(appendable, input, new Random());
+    TerminalController controller = new TerminalController(appendable, input, new Random());
     controller.runGame();
 
     System.out.println("runGamePlayerExitsTestSuccess");

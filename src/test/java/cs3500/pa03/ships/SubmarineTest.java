@@ -9,6 +9,7 @@ import cs3500.pa03.model.coords.Coords;
 import cs3500.pa03.model.ships.Ship;
 import cs3500.pa03.model.ships.ShipImpl;
 import cs3500.pa03.model.ships.ShipType;
+import cs3500.pa03.model.ships.Submarine;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ class SubmarineTest {
    */
   @BeforeEach
   void setup() {
-    ship = new ShipImpl(ShipType.Submarine);
+    ship = new Submarine();
   }
 
 
@@ -126,5 +127,29 @@ class SubmarineTest {
     assertTrue(ship.getPositions().contains(coord));
     coord = new Coords(2, 1, ship);
     assertFalse(ship.getPositions().contains(coord));
+  }
+
+  /**
+   * Tests if vertical direction returns correctly
+   */
+  @Test
+  void shipDirectionVerticalTest() {
+    Coord coord = new Coords(1, 1, ship);
+    ship.addCoord(coord);
+    coord = new Coords(2, 1, ship);
+    ship.addCoord(coord);
+    assertEquals("VERTICAL", ship.shipDirection());
+  }
+
+  /**
+   * Tests if horizontal direction returns correctly
+   */
+  @Test
+  void shipDirectionHorizontalTest() {
+    Coord coord = new Coords(1, 2, ship);
+    ship.addCoord(coord);
+    coord = new Coords(2, 2, ship);
+    ship.addCoord(coord);
+    assertEquals("HORIZONTAL", ship.shipDirection());
   }
 }

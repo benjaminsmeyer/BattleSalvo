@@ -109,9 +109,10 @@ public class ProxyDealer {
    */
   private int getPlayerGuess(HintJson guessArgs) {
     if (guessArgs.hasHint()) {
-      return this.player.guess(guessArgs.shouldGuessLower());
+      // return this.player.guess(guessArgs.shouldGuessLower());
     }
-    return this.player.guess();
+    // return this.player.guess();
+    return 0;
   }
 
 
@@ -124,7 +125,7 @@ public class ProxyDealer {
   private void handleWin(JsonNode arguments) {
     WinJson winJson = this.mapper.convertValue(arguments, WinJson.class);
 
-    this.player.win(winJson.isWinner());
+    // this.player.win(winJson.isWinner());
 
     this.out.println(VOID_RESPONSE);
   }
