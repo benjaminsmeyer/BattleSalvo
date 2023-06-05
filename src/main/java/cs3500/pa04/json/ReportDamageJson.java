@@ -23,5 +23,5 @@ import java.util.List;
  * @param volley the damage
  */
 public record ReportDamageJson(
-    @JsonProperty("volley") List<Coord> volley) {
+    @JsonProperty("coordinates") List<Coord> volley) {
 }

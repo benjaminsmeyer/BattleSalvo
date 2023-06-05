@@ -32,7 +32,7 @@ class BattleshipTest {
    */
   @Test
   void getNameTest() {
-    assertEquals("Battleship", ship.getName());
+    assertEquals("BATTLESHIP", ship.getName());
   }
 
   /**

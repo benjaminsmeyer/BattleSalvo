@@ -198,12 +198,16 @@ public class BoardGen {
     int direction = spots[2];
     for (int i = 0; i < ship.getSize(); i++) {
       if (direction == Direction.UP.getDirection()) {
+        battleShip.setShipDirection("VERTICAL");
         setCoords(row, column - i, label, battleShip);
       } else if (direction == Direction.DOWN.getDirection()) {
+        battleShip.setShipDirection("VERTICAL");
         setCoords(row, column + i, label, battleShip);
       } else if (direction == Direction.RIGHT.getDirection()) {
+        battleShip.setShipDirection("HORIZONTAL");
         setCoords(row + i, column, label, battleShip);
       } else {
+        battleShip.setShipDirection("HORIZONTAL");
         setCoords(row - i, column, label, battleShip);
       }
     }

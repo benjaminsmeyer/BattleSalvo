@@ -84,8 +84,8 @@ public class ProxyController {
     for (String ship : args.specs().keySet()) {
       fleet.put(ShipType.valueOf(ship), args.specs().get(ship));
     }
-    List<Ship> guess = player.setup(args.height(), args.width(), fleet);
-    ShipJson[] shipCoords = getPlayerShips(guess);
+    List<Ship> ships = player.setup(args.height(), args.width(), fleet);
+    ShipJson[] shipCoords = getPlayerShips(ships);
     FleetJson response = new FleetJson(shipCoords);
     JsonNode jsonResponse = JsonUtils.serializeRecord(response);
     MessageJson messageJson = new MessageJson("setup", jsonResponse);
@@ -96,7 +96,7 @@ public class ProxyController {
   private ShipJson[] getPlayerShips(List<Ship> ships) {
     List<ShipJson> list = new ArrayList<>();
     for (Ship ship : ships) {
-      ShipJson json = new ShipJson(ship.getPositions().get(0), ship.getOriginalSize(), ship.shipDirection());
+      ShipJson json = new ShipJson(ship.startingCoord(), ship.getOriginalSize(), ship.shipDirection());
       list.add(json);
     }
     return list.toArray(ShipJson[]::new);

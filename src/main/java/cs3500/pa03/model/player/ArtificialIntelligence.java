@@ -31,12 +31,12 @@ public class ArtificialIntelligence extends PlayerImpl {
     int amountAvailable = countAvailableSpots(opponentBoard);
     int count = Math.min(amountAvailable, fleetSize);
     while (count > 0) {
-      int x = random.nextInt(0, width);
-      int y = random.nextInt(0, height);
-      if (validShot(x, y)) {
-        Coord coord = new Coord(x, y);
+      int row = random.nextInt(0, width);
+      int column = random.nextInt(0, height);
+      if (validShot(row, column)) {
+        Coord coord = new Coord(row, column);
         coords.add(coord);
-        opponentBoard[y][x] = MISS;
+        opponentBoard[column][row] = MISS;
         count--;
       }
     }

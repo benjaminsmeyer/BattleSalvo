@@ -32,7 +32,7 @@ class SubmarineTest {
    */
   @Test
   void getNameTest() {
-    assertEquals("Submarine", ship.getName());
+    assertEquals("SUBMARINE", ship.getName());
   }
 
   /**
@@ -132,6 +132,7 @@ class SubmarineTest {
    */
   @Test
   void shipDirectionVerticalTest() {
+    ship.setShipDirection("VERTICAL");
     Coord coord = new Coord(1, 1, ship);
     ship.addCoord(coord);
     coord = new Coord(1, 2, ship);
@@ -144,10 +145,37 @@ class SubmarineTest {
    */
   @Test
   void shipDirectionHorizontalTest() {
+    ship.setShipDirection("HORIZONTAL");
     Coord coord = new Coord(1, 2, ship);
     ship.addCoord(coord);
     coord = new Coord(2, 2, ship);
     ship.addCoord(coord);
     assertEquals("HORIZONTAL", ship.shipDirection());
+  }
+
+  /**
+   * Tests if the starting coord returns correctly
+   */
+  @Test
+  void startingCoordHorizontalTest() {
+    ship.setShipDirection("HORIZONTAL");
+    Coord coord = new Coord(1, 2, ship);
+    ship.addCoord(coord);
+    coord = new Coord(2, 2, ship);
+    ship.addCoord(coord);
+    assertEquals("(1, 2)", ship.startingCoord().toString());
+  }
+
+  /**
+   * Tests if the starting coord returns correctly
+   */
+  @Test
+  void startingCoordVerticalTest() {
+    ship.setShipDirection("VERTICAL");
+    Coord coord = new Coord(1, 1, ship);
+    ship.addCoord(coord);
+    coord = new Coord(1, 2, ship);
+    ship.addCoord(coord);
+    assertEquals("(1, 1)", ship.startingCoord().toString());
   }
 }

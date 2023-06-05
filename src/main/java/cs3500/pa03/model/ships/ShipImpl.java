@@ -13,6 +13,7 @@ public class ShipImpl implements Ship {
   private final String firstLetter;
   private final List<Coord> coords;
   private int currentSize;
+  private String direction;
 
   /**
    * Setups the battleship class.
@@ -117,25 +118,48 @@ public class ShipImpl implements Ship {
   }
 
   /**
+   * Gets the starting coord of the ship.
+   *
+   * @return the starting coord
+   */
+  public Coord startingCoord() {
+    Coord current = new Coord(0, 0);
+    int x = Integer.MAX_VALUE;
+    int y = Integer.MAX_VALUE;
+    if (shipDirection().equals("VERTICAL")) {
+      for (Coord coord : coords) {
+        if (coord.getY() < y) {
+          y = coord.getY();
+          current = coord;
+        }
+      }
+    } else {
+      for (Coord coord : coords) {
+        if (coord.getX() < x) {
+          x = coord.getX();
+          current = coord;
+        }
+      }
+    }
+    return current;
+  }
+
+  /**
    * Returns ship position if it is VERTICAL or HORIZONTAL
    *
    * @return the string of the position
    */
   public String shipDirection() {
-    String vertical = "VERTICAL";
-    String horizontal = "HORIZONTAL";
-    int count = 0;
-    int currentX = coords.get(0).getX();
-    for (Coord coord : coords) {
-      if (coord.getX() == currentX) {
-        count++;
-      }
-    }
-    if (count == coords.size()) {
-      return vertical;
-    } else {
-      return horizontal;
-    }
+    return direction;
+  }
+
+  /**
+   * Set ship direction.
+   *
+   * @param direction the direction of ship.
+   */
+  public void setShipDirection(String direction) {
+    this.direction = direction;
   }
 }
 

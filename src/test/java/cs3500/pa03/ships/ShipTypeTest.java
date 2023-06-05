@@ -15,7 +15,7 @@ class ShipTypeTest {
    */
   @Test
   void getNameTest() {
-    assertEquals("Carrier", ShipType.CARRIER.getName());
+    assertEquals("CARRIER", ShipType.CARRIER.getName());
   }
 
   /**

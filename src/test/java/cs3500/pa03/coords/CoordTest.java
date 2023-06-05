@@ -86,7 +86,7 @@ class CoordTest {
    */
   @Test
   void spotTakenReturnsTest() {
-    assertEquals("Destroyer", coordWithBoat.spotTaken().getName());
+    assertEquals("DESTROYER", coordWithBoat.spotTaken().getName());
   }
 
   /**

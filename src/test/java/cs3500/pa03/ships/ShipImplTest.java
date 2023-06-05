@@ -32,7 +32,7 @@ class ShipImplTest {
    */
   @Test
   void getNameTest() {
-    assertEquals("Carrier", ship.getName());
+    assertEquals("CARRIER", ship.getName());
   }
 
   /**

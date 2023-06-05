@@ -32,7 +32,7 @@ class DestroyerTest {
    */
   @Test
   void getNameTest() {
-    assertEquals("Destroyer", ship.getName());
+    assertEquals("DESTROYER", ship.getName());
   }
 
   /**

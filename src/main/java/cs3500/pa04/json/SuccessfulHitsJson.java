@@ -23,5 +23,5 @@ import java.util.List;
  * @param volley the successful hits
  */
 public record SuccessfulHitsJson(
-    @JsonProperty("volley") List<Coord> volley) {
+    @JsonProperty("coordinates") List<Coord> volley) {
 }

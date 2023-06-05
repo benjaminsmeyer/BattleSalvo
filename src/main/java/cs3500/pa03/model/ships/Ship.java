@@ -37,6 +37,13 @@ public interface Ship {
   int getCurrentSize();
 
   /**
+   * Gets the starting coord of the ship.
+   *
+   * @return the starting coord.
+   */
+  Coord startingCoord();
+
+  /**
    * Gets the first letter of the ship name
    *
    * @return first letter of the ship name
@@ -82,4 +89,11 @@ public interface Ship {
    * @return the string of the position
    */
   String shipDirection();
+
+  /**
+   * Set ship direction.
+   *
+   * @param direction the direction of ship.
+   */
+  void setShipDirection(String direction);
 }
