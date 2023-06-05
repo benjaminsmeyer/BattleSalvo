@@ -13,7 +13,6 @@ public class Coord {
   private final boolean spotInUse;
   private final Ship ship;
   private boolean spotHit;
-  private Direction direction;
 
   /**
    * Setups the coords

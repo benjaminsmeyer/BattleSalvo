@@ -76,10 +76,18 @@ public class ProxyController {
     String name = message.methodName();
     JsonNode arguments = message.arguments();
 
-    if ("hint".equals(name)) {
-      // handleHint(arguments);
-    } else if ("win".equals(name)) {
-      // handleWin(arguments);
+    if ("join".equals(name)) {
+      // handleJoin(arguments);
+    } else if ("setup".equals(name)) {
+      // handleSetup(arguments);
+    } else if ("take-shots".equals(name)) {
+      handleTakeShots(arguments);
+    } else if ("report-damage".equals(name)) {
+      handleReportDamage(arguments);
+    } else if ("successful-hits".equals(name)) {
+      handleSuccessfulHits(arguments);
+    } else if ("end-game".equals(name)) {
+      handleEndGame(arguments);
     } else {
       throw new IllegalStateException("Invalid message name");
     }
@@ -96,6 +104,9 @@ public class ProxyController {
     EndGameJson endGame = this.mapper.convertValue(arguments, EndGameJson.class);
     try {
       player.endGame(endGame.result(), endGame.reason());
+
+      ObjectMapper mapper = new ObjectMapper();
+      System.out.println(mapper.writeValueAsString(endGame));
     } catch (IOException e) {
       throw new IllegalArgumentException("Unable to send message.");
     }
@@ -132,8 +143,6 @@ public class ProxyController {
    * @param arguments the Json representation of a TakeShotsJson.
    */
   private void handleTakeShots(JsonNode arguments) {
-    TakeShotsJson takeShotsJson = this.mapper.convertValue(arguments, TakeShotsJson.class);
-
     List<Coord> takeShots;
     try {
       takeShots = player.takeShots();

@@ -132,9 +132,9 @@ public class ShipImpl implements Ship {
       }
     }
     if (count == coords.size()) {
-      return horizontal;
-    } else {
       return vertical;
+    } else {
+      return horizontal;
     }
   }
 }

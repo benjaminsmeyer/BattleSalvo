@@ -132,9 +132,9 @@ class SubmarineTest {
    */
   @Test
   void shipDirectionVerticalTest() {
-    Coord coord = new Coord(1, 2, ship);
+    Coord coord = new Coord(1, 1, ship);
     ship.addCoord(coord);
-    coord = new Coord(2, 2, ship);
+    coord = new Coord(1, 2, ship);
     ship.addCoord(coord);
     assertEquals("VERTICAL", ship.shipDirection());
   }
@@ -144,9 +144,9 @@ class SubmarineTest {
    */
   @Test
   void shipDirectionHorizontalTest() {
-    Coord coord = new Coord(1, 1, ship);
+    Coord coord = new Coord(1, 2, ship);
     ship.addCoord(coord);
-    coord = new Coord(1, 2, ship);
+    coord = new Coord(2, 2, ship);
     ship.addCoord(coord);
     assertEquals("HORIZONTAL", ship.shipDirection());
   }
