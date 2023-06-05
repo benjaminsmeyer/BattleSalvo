@@ -8,8 +8,8 @@ import java.util.NoSuchElementException;
  * Coordinates on the board
  */
 public class Coord {
-  private final int axisX;
-  private final int axisY;
+  private final int x;
+  private final int y;
   private final boolean spotInUse;
   private final Ship ship;
   private boolean spotHit;
@@ -22,8 +22,8 @@ public class Coord {
    */
   public Coord(@JsonProperty("x") int x,
                @JsonProperty("y") int y) {
-    this.axisX = x;
-    this.axisY = y;
+    this.x = x;
+    this.y = y;
     this.spotInUse = false;
     this.ship = null;
     this.spotHit = false;
@@ -37,8 +37,8 @@ public class Coord {
    * @param ship the ship
    */
   public Coord(int x, int y, Ship ship) {
-    this.axisX = x;
-    this.axisY = y;
+    this.x = x;
+    this.y = y;
     this.spotInUse = true;
     this.ship = ship;
     this.spotHit = false;
@@ -49,8 +49,8 @@ public class Coord {
    *
    * @return the x coordinate
    */
-  public int getAxisX() {
-    return axisX;
+  public int getX() {
+    return x;
   }
 
   /**
@@ -58,8 +58,8 @@ public class Coord {
    *
    * @return the y coordinate
    */
-  public int getAxisY() {
-    return axisY;
+  public int getY() {
+    return y;
   }
 
   /**
@@ -109,6 +109,6 @@ public class Coord {
    * @return a string of the coordinates
    */
   public String toString() {
-    return String.format("(%d, %d)", axisX, axisY);
+    return String.format("(%d, %d)", x, y);
   }
 }

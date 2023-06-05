@@ -75,10 +75,10 @@ class UserTest {
   @Test
   void setupTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     assertEquals(71, user.toString().length());
   }
@@ -89,10 +89,10 @@ class UserTest {
   @Test
   void takeShotsTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     try {
       user.takeShots();
@@ -108,10 +108,10 @@ class UserTest {
   @Test
   void reportDamageTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     List<Coord> coords = new ArrayList<>();
     Coord coord = new Coord(1, 1);
@@ -129,10 +129,10 @@ class UserTest {
   @Test
   void successfulHitsTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     List<Coord> coords = new ArrayList<>();
     Coord coord = new Coord(1, 1);
@@ -166,10 +166,10 @@ class UserTest {
   @Test
   void getBoardTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     String result = Arrays.deepToString(user.getBoard());
     assertEquals(120, result.length());
@@ -181,10 +181,10 @@ class UserTest {
   @Test
   void getOpponentBoardTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     assertEquals("[[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], "
            + "[0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0], [0, 0, 0, 0, 0, 0]]",
@@ -197,10 +197,10 @@ class UserTest {
   @Test
   void getFleetSizeTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     assertEquals(4, user.getFleetSize());
   }
@@ -211,10 +211,10 @@ class UserTest {
   @Test
   void testToStringTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     String actual = user.toString();
     assertTrue(actual.contains("S"));
@@ -229,10 +229,10 @@ class UserTest {
   @Test
   void opponentToStringTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     user.setup(6, 6, specifications);
     assertEquals("0 0 0 0 0 0\n"
         + "0 0 0 0 0 0\n"

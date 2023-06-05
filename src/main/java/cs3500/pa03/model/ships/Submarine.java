@@ -8,6 +8,6 @@ public class Submarine extends ShipImpl {
    * Creates the Submarine ship
    */
   public Submarine() {
-    super(ShipType.Submarine);
+    super(ShipType.SUBMARINE);
   }
 }

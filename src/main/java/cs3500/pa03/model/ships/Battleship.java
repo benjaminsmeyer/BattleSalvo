@@ -8,6 +8,6 @@ public class Battleship extends ShipImpl {
    * Creates the Battleship ship
    */
   public Battleship() {
-    super(ShipType.Battleship);
+    super(ShipType.BATTLESHIP);
   }
 }

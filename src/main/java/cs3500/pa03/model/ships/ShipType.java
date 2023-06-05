@@ -4,11 +4,11 @@ package cs3500.pa03.model.ships;
  * An enum containing the basic details for each ship
  */
 public enum ShipType {
-  Carrier(6),
-  Battleship(5),
-  Destroyer(4),
-  Submarine(3),
-  Empty(0);
+  CARRIER(6),
+  BATTLESHIP(5),
+  DESTROYER(4),
+  SUBMARINE(3),
+  EMPTY(0);
 
   private final int size;
 

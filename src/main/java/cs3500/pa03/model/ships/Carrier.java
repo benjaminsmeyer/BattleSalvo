@@ -8,6 +8,6 @@ public class Carrier extends ShipImpl {
    * Creates the Carrier ship
    */
   public Carrier() {
-    super(ShipType.Carrier);
+    super(ShipType.CARRIER);
   }
 }

@@ -8,6 +8,6 @@ public class Destroyer extends ShipImpl {
    * Creates the Destroyer ship
    */
   public Destroyer() {
-    super(ShipType.Destroyer);
+    super(ShipType.DESTROYER);
   }
 }

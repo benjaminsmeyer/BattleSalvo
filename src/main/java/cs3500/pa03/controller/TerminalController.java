@@ -91,7 +91,7 @@ public class TerminalController {
    */
   private void playerWins() throws IOException {
     player.endGame(GameResult.WIN, "Player destroyed all ships.");
-    robot.endGame(GameResult.LOST, "Player destroyed all ships.");
+    robot.endGame(GameResult.LOSE, "Player destroyed all ships.");
   }
 
   /**
@@ -101,7 +101,7 @@ public class TerminalController {
    */
   private void robotWins() throws IOException {
     robot.endGame(GameResult.WIN, "AI destroyed all ships.");
-    player.endGame(GameResult.LOST, "AI destroyed all ships.");
+    player.endGame(GameResult.LOSE, "AI destroyed all ships.");
   }
 
   /**
@@ -216,13 +216,13 @@ public class TerminalController {
     int destroyer = 2;
     for (int i = 0; i < fleetSize.length; i++) {
       if (i == carrier) {
-        specifications.put(ShipType.Carrier, fleetSize[i]);
+        specifications.put(ShipType.CARRIER, fleetSize[i]);
       } else if (i == battleship) {
-        specifications.put(ShipType.Battleship, fleetSize[i]);
+        specifications.put(ShipType.BATTLESHIP, fleetSize[i]);
       } else if (i == destroyer) {
-        specifications.put(ShipType.Destroyer, fleetSize[i]);
+        specifications.put(ShipType.DESTROYER, fleetSize[i]);
       } else {
-        specifications.put(ShipType.Submarine, fleetSize[i]);
+        specifications.put(ShipType.SUBMARINE, fleetSize[i]);
       }
     }
     return specifications;

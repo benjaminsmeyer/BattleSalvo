@@ -23,7 +23,7 @@ class ShipImplTest {
    */
   @BeforeEach
   void setup() {
-    ship = new ShipImpl(ShipType.Carrier);
+    ship = new ShipImpl(ShipType.CARRIER);
   }
 
 
@@ -100,7 +100,7 @@ class ShipImplTest {
    */
   @Test
   void getShipTypeTest() {
-    assertEquals(ShipType.Carrier, ship.getShipType());
+    assertEquals(ShipType.CARRIER, ship.getShipType());
   }
 
   /**

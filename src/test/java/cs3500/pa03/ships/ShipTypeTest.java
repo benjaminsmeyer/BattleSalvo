@@ -15,7 +15,7 @@ class ShipTypeTest {
    */
   @Test
   void getNameTest() {
-    assertEquals("Carrier", ShipType.Carrier.getName());
+    assertEquals("Carrier", ShipType.CARRIER.getName());
   }
 
   /**
@@ -23,7 +23,7 @@ class ShipTypeTest {
    */
   @Test
   void getSizeTest() {
-    assertEquals(6, ShipType.Carrier.getSize());
+    assertEquals(6, ShipType.CARRIER.getSize());
   }
 
   /**
@@ -31,6 +31,6 @@ class ShipTypeTest {
    */
   @Test
   void getFirstLetterTest() {
-    assertEquals("C", ShipType.Carrier.getFirstLetter());
+    assertEquals("C", ShipType.CARRIER.getFirstLetter());
   }
 }

@@ -21,6 +21,6 @@ import cs3500.pa03.model.game.GameResult;
  * @param reason the reason of the game
  */
 public record EndGameJson(
-    @JsonProperty("result") GameResult result,
+    @JsonProperty("result") String result,
     @JsonProperty("reason") String reason) {
 }

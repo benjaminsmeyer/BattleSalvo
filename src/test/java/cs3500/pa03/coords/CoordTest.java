@@ -33,8 +33,8 @@ class CoordTest {
    */
   @Test
   void getXtest() {
-    assertEquals(5, coordWithBoat.getAxisX());
-    assertEquals(5, coordWithNoBoat.getAxisX());
+    assertEquals(5, coordWithBoat.getX());
+    assertEquals(5, coordWithNoBoat.getX());
   }
 
   /**
@@ -42,8 +42,8 @@ class CoordTest {
    */
   @Test
   void getYtest() {
-    assertEquals(5, coordWithBoat.getAxisY());
-    assertEquals(5, coordWithNoBoat.getAxisY());
+    assertEquals(5, coordWithBoat.getY());
+    assertEquals(5, coordWithNoBoat.getY());
   }
 
   /**

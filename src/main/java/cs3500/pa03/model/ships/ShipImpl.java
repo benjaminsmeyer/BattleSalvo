@@ -125,9 +125,9 @@ public class ShipImpl implements Ship {
     String vertical = "VERTICAL";
     String horizontal = "HORIZONTAL";
     int count = 0;
-    int currentX = coords.get(0).getAxisX();
+    int currentX = coords.get(0).getX();
     for (Coord coord : coords) {
-      if (coord.getAxisX() == currentX) {
+      if (coord.getX() == currentX) {
         count++;
       }
     }

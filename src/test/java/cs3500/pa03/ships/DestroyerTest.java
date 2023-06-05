@@ -100,7 +100,7 @@ class DestroyerTest {
    */
   @Test
   void getShipTypeTest() {
-    assertEquals(ShipType.Destroyer, ship.getShipType());
+    assertEquals(ShipType.DESTROYER, ship.getShipType());
   }
 
   @Test

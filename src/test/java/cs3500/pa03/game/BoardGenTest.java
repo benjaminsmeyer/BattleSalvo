@@ -26,17 +26,17 @@ class BoardGenTest {
   @BeforeEach
   void setup() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     genOne = new BoardGen(6, 6, specifications, new Random(1));
 
     specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 4);
-    specifications.put(ShipType.Battleship, 6);
-    specifications.put(ShipType.Destroyer, 2);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 4);
+    specifications.put(ShipType.BATTLESHIP, 6);
+    specifications.put(ShipType.DESTROYER, 2);
+    specifications.put(ShipType.SUBMARINE, 1);
     genTwo = new BoardGen(13, 13, specifications, new Random(3));
   }
 
@@ -69,10 +69,10 @@ class BoardGenTest {
   @Test
   void countFleetSizeTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     assertEquals(4, genOne.countFleetSize(specifications));
   }
 
@@ -82,10 +82,10 @@ class BoardGenTest {
   @Test
   void countFleetSizeThrowsTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 0);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 0);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     assertThrows(IllegalArgumentException.class,
         () -> genOne.countFleetSize(specifications));
   }
@@ -116,10 +116,10 @@ class BoardGenTest {
   @Test
   void createBoardThrowsInvalidBoardSizeTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 2);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 2);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     BoardGen genTestThrowsOne = new BoardGen(3, 3, specifications, new Random(1));
     assertThrows(IllegalArgumentException.class,
         () -> genTestThrowsOne.createBoard());
@@ -146,19 +146,19 @@ class BoardGenTest {
   @Test
   void createBoardThrowsInvalidFleetSizeTest() {
     Map<ShipType, Integer> specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 1);
-    specifications.put(ShipType.Battleship, 0);
-    specifications.put(ShipType.Destroyer, 0);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 1);
+    specifications.put(ShipType.BATTLESHIP, 0);
+    specifications.put(ShipType.DESTROYER, 0);
+    specifications.put(ShipType.SUBMARINE, 1);
     BoardGen genTestThrowsThree = new BoardGen(6, 6, specifications, new Random(1));
     assertThrows(IllegalArgumentException.class,
         () -> genTestThrowsThree.createBoard());
 
     specifications = new HashMap<>();
-    specifications.put(ShipType.Carrier, 10);
-    specifications.put(ShipType.Battleship, 1);
-    specifications.put(ShipType.Destroyer, 1);
-    specifications.put(ShipType.Submarine, 1);
+    specifications.put(ShipType.CARRIER, 10);
+    specifications.put(ShipType.BATTLESHIP, 1);
+    specifications.put(ShipType.DESTROYER, 1);
+    specifications.put(ShipType.SUBMARINE, 1);
     BoardGen genTestThrowsFour = new BoardGen(6, 6, specifications, new Random(1));
     assertThrows(IllegalArgumentException.class,
         () -> genTestThrowsFour.createBoard());

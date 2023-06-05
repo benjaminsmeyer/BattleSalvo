@@ -100,7 +100,7 @@ class CarrierTest {
    */
   @Test
   void getShipTypeTest() {
-    assertEquals(ShipType.Carrier, ship.getShipType());
+    assertEquals(ShipType.CARRIER, ship.getShipType());
   }
 
   /**

@@ -292,11 +292,11 @@ public class BoardGen {
    * @throws IllegalArgumentException when the ship type does not exist as a class
    */
   private Ship getShipType(ShipType ship) {
-    if (ship == ShipType.Submarine) {
+    if (ship == ShipType.SUBMARINE) {
       return new Submarine();
-    } else if (ship == ShipType.Battleship) {
+    } else if (ship == ShipType.BATTLESHIP) {
       return new Battleship();
-    } else if (ship == ShipType.Carrier) {
+    } else if (ship == ShipType.CARRIER) {
       return new Carrier();
     } else {
       return new Destroyer();
