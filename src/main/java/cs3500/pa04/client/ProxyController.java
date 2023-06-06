@@ -5,7 +5,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cs3500.pa03.model.coords.Coord;
 import cs3500.pa03.model.game.GameResult;
-import cs3500.pa03.model.player.ArtificialIntelligence;
 import cs3500.pa03.model.player.PlayerExtend;
 import cs3500.pa03.model.ships.Ship;
 import cs3500.pa03.model.ships.ShipType;
@@ -51,11 +50,11 @@ public class ProxyController {
    * @param server the socket connection to the server
    * @throws IOException if
    */
-  public ProxyController(Socket server) throws IOException {
+  public ProxyController(Socket server, PlayerExtend player) throws IOException {
     this.server = server;
     this.in = server.getInputStream();
     this.out = new PrintStream(server.getOutputStream());
-    this.player = new ArtificialIntelligence("benjaminsmeyer");
+    this.player = player;
   }
 
 

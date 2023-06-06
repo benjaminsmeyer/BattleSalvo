@@ -1,6 +1,8 @@
 package cs3500.pa04;
 
 import cs3500.pa03.controller.TerminalController;
+import cs3500.pa03.model.player.ArtificialIntelligence;
+import cs3500.pa03.model.player.PlayerExtend;
 import cs3500.pa04.client.ProxyController;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -24,7 +26,8 @@ public class Driver {
       throws IOException, IllegalStateException {
     Socket server = new Socket(host, Integer.parseInt(port));
 
-    ProxyController proxyController = new ProxyController(server);
+    PlayerExtend player = new ArtificialIntelligence("benjaminsmeyer");
+    ProxyController proxyController = new ProxyController(server, player);
     proxyController.run();
   }
 
