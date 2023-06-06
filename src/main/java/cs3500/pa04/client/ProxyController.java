@@ -91,11 +91,11 @@ public class ProxyController {
     JsonNode arguments = message.arguments();
 
     if ("join".equals(name)) {
-      handleJoin(arguments);
+      handleJoin();
     } else if ("setup".equals(name)) {
       handleSetup(arguments);
     } else if ("take-shots".equals(name)) {
-      handleTakeShots(arguments);
+      handleTakeShots();
     } else if ("report-damage".equals(name)) {
       handleReportDamage(arguments);
     } else if ("successful-hits".equals(name)) {
@@ -196,10 +196,8 @@ public class ProxyController {
 
   /**
    * Parses the given arguments as a Join.
-   *
-   * @param arguments the Json representation of a JoinJson.
    */
-  private void handleJoin(JsonNode arguments) {
+  private void handleJoin() {
     JoinJson response = new JoinJson(name, GAME_TYPE_SINGLE);
     JsonNode jsonResponse = JsonUtils.serializeRecord(response);
     MessageJson messageJson = new MessageJson("join", jsonResponse);
@@ -209,10 +207,8 @@ public class ProxyController {
 
   /**
    * Parses the given arguments as a Take Shots.
-   *
-   * @param arguments the Json representation of a TakeShotsJson.
    */
-  private void handleTakeShots(JsonNode arguments) {
+  private void handleTakeShots() {
     List<Coord> takeShots;
     try {
       takeShots = player.takeShots();
