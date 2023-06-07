@@ -2,16 +2,19 @@ package cs3500.pa03.model.player;
 
 import cs3500.pa03.model.coords.Coord;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 /**
  * AI class against player
  */
 public class ArtificialIntelligence extends PlayerImpl {
-  private final List<Coord> targets;
-  private final List<Coord> hits;
-  private final List<Coord> allShots;
+  private final Map<String, Coord> targets;
+  private final Map<String, Coord> hits;
+  private final Map<String, Coord> allShots;
+  private List<Coord> listTargets;
 
   /**
    * Setups the player
@@ -21,9 +24,10 @@ public class ArtificialIntelligence extends PlayerImpl {
   public ArtificialIntelligence(String name) {
     super(name);
 
-    targets = new ArrayList<>();
-    hits = new ArrayList<>();
-    allShots = new ArrayList<>();
+    targets = new HashMap<>();
+    hits = new HashMap<>();
+    allShots = new HashMap<>();
+    listTargets = new ArrayList<>();
   }
 
   /**
@@ -43,7 +47,7 @@ public class ArtificialIntelligence extends PlayerImpl {
     while (count > 0) {
       Coord coord = takeOneShot();
       shots.add(coord);
-      allShots.add(coord);
+      allShots.put(coord.toString(), coord);
       opponentBoard[coord.getY()][coord.getX()] = MISS;
       count--;
     }
@@ -82,21 +86,25 @@ public class ArtificialIntelligence extends PlayerImpl {
    */
   private Coord takeOneShot() {
     if (!hits.isEmpty()) {
-      List<Coord> potentialTargets = findPotentialTargets();
+      Map<String, Coord> potentialTargets = findPotentialTargets();
 
-      for (Coord target : potentialTargets) {
-        if ((validShot(target.getX(), target.getY()))
-            && (!allShots.contains(target))
-            && (!targets.contains(target))) {
-          targets.add(target);
+      for (String target : potentialTargets.keySet()) {
+        if ((validShot(potentialTargets.get(target).getX(), potentialTargets.get(target).getY()))
+            && (!allShots.containsKey(target))
+            && (!targets.containsKey(target))) {
+          targets.put(target, potentialTargets.get(target));
         }
       }
     }
 
-    if (targets.isEmpty()) {
+    listTargets = new ArrayList<>(targets.values());
+
+    if (listTargets.isEmpty()) {
       return randomGuess();
     } else {
-      return targets.remove(0);
+      Coord coord = listTargets.remove(0);
+      targets.remove(coord.toString());
+      return coord;
     }
   }
 
@@ -107,7 +115,7 @@ public class ArtificialIntelligence extends PlayerImpl {
    */
   private Coord randomGuess() {
     Coord coord = null;
-    while (coord == null || allShots.contains(coord)) {
+    while (coord == null || allShots.containsKey(coord.toString())) {
       int x = random.nextInt(0, width);
       int y = random.nextInt(0, height);
       if (validShot(x, y)) {
@@ -123,21 +131,26 @@ public class ArtificialIntelligence extends PlayerImpl {
    *
    * @return the potential locations of ships on the opponent's board
    */
-  private List<Coord> findPotentialTargets() {
-    List<Coord> potentialTargets = new ArrayList<>();
+  private Map<String, Coord> findPotentialTargets() {
+    Map<String, Coord> potentialTargets = new HashMap<>();
 
-    for (Coord hit : hits) {
-      if (validShot(hit.getX() + 1, hit.getY())) {
-        potentialTargets.add(new Coord(hit.getX() + 1, hit.getY()));
+    for (String hit : hits.keySet()) {
+      Coord currentHit = hits.get(hit);
+      if (validShot(currentHit.getX() + 1, currentHit.getY())) {
+        Coord coord = new Coord(currentHit.getX() + 1, currentHit.getY());
+        potentialTargets.put(coord.toString(), coord);
       }
-      if (validShot(hit.getX(), hit.getY() + 1)) {
-        potentialTargets.add(new Coord(hit.getX(), hit.getY() + 1));
+      if (validShot(currentHit.getX(), currentHit.getY() + 1)) {
+        Coord coord = new Coord(currentHit.getX(), currentHit.getY() + 1);
+        potentialTargets.put(coord.toString(), coord);
       }
-      if (validShot(hit.getX() - 1, hit.getY())) {
-        potentialTargets.add(new Coord(hit.getX() - 1, hit.getY()));
+      if (validShot(currentHit.getX() - 1, currentHit.getY())) {
+        Coord coord = new Coord(currentHit.getX() - 1, currentHit.getY());
+        potentialTargets.put(coord.toString(), coord);
       }
-      if (validShot(hit.getX(), hit.getY() - 1)) {
-        potentialTargets.add(new Coord(hit.getX(), hit.getY() - 1));
+      if (validShot(currentHit.getX(), currentHit.getY() - 1)) {
+        Coord coord = new Coord(currentHit.getX(), currentHit.getY() - 1);
+        potentialTargets.put(coord.toString(), coord);
       }
     }
 
@@ -195,12 +208,12 @@ public class ArtificialIntelligence extends PlayerImpl {
    * Updates player knowledge of locations where players shots have damaged opponents ships.
    */
   private void getHits() {
-    for (int x = 0; x < Math.max(height, width); x++) {
-      for (int y = 0; y < Math.max(height, width); y++) {
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
         if (validHit(x, y)) {
           Coord coord = new Coord(x, y);
-          if (opponentBoard[y][x].equals(HIT) && !hits.contains(coord)) {
-            hits.add(coord);
+          if (opponentBoard[y][x].equals(HIT) && !hits.containsKey(coord.toString())) {
+            hits.put(coord.toString(), coord);
           }
         }
       }
