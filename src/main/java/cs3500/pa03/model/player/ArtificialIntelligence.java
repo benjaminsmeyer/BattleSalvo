@@ -39,7 +39,6 @@ public class ArtificialIntelligence extends PlayerImpl {
    */
   @Override
   public List<Coord> takeShots() {
-    System.out.println("shot taken");
     List<Coord> shots = new ArrayList<>();
     int amountAvailable = countAvailableSpots(opponentBoard);
     int count = Math.min(amountAvailable, fleetSize);
