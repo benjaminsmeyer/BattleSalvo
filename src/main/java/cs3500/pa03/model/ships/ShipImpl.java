@@ -128,15 +128,15 @@ public class ShipImpl implements Ship {
     int y = Integer.MAX_VALUE;
     if (shipDirection().equals("VERTICAL")) {
       for (Coord coord : coords) {
-        if (coord.getY() < y) {
-          y = coord.getY();
+        if (coord.getAxisY() < y) {
+          y = coord.getAxisY();
           current = coord;
         }
       }
     } else {
       for (Coord coord : coords) {
-        if (coord.getX() < x) {
-          x = coord.getX();
+        if (coord.getAxisX() < x) {
+          x = coord.getAxisX();
           current = coord;
         }
       }

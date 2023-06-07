@@ -49,35 +49,11 @@ public class ArtificialIntelligence extends PlayerImpl {
       Coord coord = takeOneShot();
       shots.add(coord);
       allShots.put(coord.toString(), coord);
-      opponentBoard[coord.getY()][coord.getX()] = MISS;
+      opponentBoard[coord.getAxisY()][coord.getAxisX()] = MISS;
       count--;
     }
 
     return shots;
-  }
-
-  /**
-   * Randomly takes shots on the board.
-   *
-   * @param currentCount the current available shots left
-   * @return the list of randomly placed shots
-   */
-  private List<Coord> takeShotsRandomly(int currentCount) {
-    List<Coord> coords = new ArrayList<>();
-    // int amountAvailable = countAvailableSpots(opponentBoard);
-    // int count = Math.min(amountAvailable, fleetSize);
-    int count = currentCount;
-    while (count > 0) {
-      int x = random.nextInt(0, width);
-      int y = random.nextInt(0, height);
-      if (validShot(x, y)) {
-        Coord coord = new Coord(x, y);
-        coords.add(coord);
-        opponentBoard[y][x] = MISS;
-        count--;
-      }
-    }
-    return coords;
   }
 
   /**
@@ -90,7 +66,8 @@ public class ArtificialIntelligence extends PlayerImpl {
       Map<String, Coord> potentialTargets = findPotentialTargets();
 
       for (String target : potentialTargets.keySet()) {
-        if ((validShot(potentialTargets.get(target).getX(), potentialTargets.get(target).getY()))
+        if ((validShot(potentialTargets.get(target).getAxisX(),
+            potentialTargets.get(target).getAxisY()))
             && (!allShots.containsKey(target))
             && (!targets.containsKey(target))) {
           targets.put(target, potentialTargets.get(target));
@@ -139,20 +116,20 @@ public class ArtificialIntelligence extends PlayerImpl {
 
     for (String hit : hits.keySet()) {
       Coord currentHit = hits.get(hit);
-      if (validShot(currentHit.getX() + 1, currentHit.getY())) {
-        Coord coord = new Coord(currentHit.getX() + 1, currentHit.getY());
+      if (validShot(currentHit.getAxisX() + 1, currentHit.getAxisY())) {
+        Coord coord = new Coord(currentHit.getAxisX() + 1, currentHit.getAxisY());
         potentialTargets.put(coord.toString(), coord);
       }
-      if (validShot(currentHit.getX(), currentHit.getY() + 1)) {
-        Coord coord = new Coord(currentHit.getX(), currentHit.getY() + 1);
+      if (validShot(currentHit.getAxisX(), currentHit.getAxisY() + 1)) {
+        Coord coord = new Coord(currentHit.getAxisX(), currentHit.getAxisY() + 1);
         potentialTargets.put(coord.toString(), coord);
       }
-      if (validShot(currentHit.getX() - 1, currentHit.getY())) {
-        Coord coord = new Coord(currentHit.getX() - 1, currentHit.getY());
+      if (validShot(currentHit.getAxisX() - 1, currentHit.getAxisY())) {
+        Coord coord = new Coord(currentHit.getAxisX() - 1, currentHit.getAxisY());
         potentialTargets.put(coord.toString(), coord);
       }
-      if (validShot(currentHit.getX(), currentHit.getY() - 1)) {
-        Coord coord = new Coord(currentHit.getX(), currentHit.getY() - 1);
+      if (validShot(currentHit.getAxisX(), currentHit.getAxisY() - 1)) {
+        Coord coord = new Coord(currentHit.getAxisX(), currentHit.getAxisY() - 1);
         potentialTargets.put(coord.toString(), coord);
       }
     }
@@ -201,7 +178,7 @@ public class ArtificialIntelligence extends PlayerImpl {
    */
   private boolean validHit(int x, int y) {
     try {
-      return Objects.equals(opponentBoard[y][x], HIT) ;
+      return Objects.equals(opponentBoard[y][x], HIT);
     } catch (IndexOutOfBoundsException e) {
       return false;
     }

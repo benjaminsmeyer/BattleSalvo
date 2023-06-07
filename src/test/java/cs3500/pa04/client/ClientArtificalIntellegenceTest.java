@@ -3,9 +3,9 @@ package cs3500.pa04.client;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import cs3500.pa03.model.coords.Coord;
 import cs3500.pa03.model.player.ArtificialIntelligence;
 import cs3500.pa03.model.player.PlayerExtend;
-import cs3500.pa03.model.coords.Coord;
 import cs3500.pa03.model.ships.Ship;
 import cs3500.pa03.model.ships.ShipType;
 import java.io.IOException;
@@ -16,7 +16,10 @@ import java.util.Map;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class NewArtificalIntellegenceTest {
+/**
+ * Tests the new artificial intelligence
+ */
+public class ClientArtificalIntellegenceTest {
   PlayerExtend ai;
   List<Coord> allShots;
   List<Ship> ships;
@@ -54,7 +57,7 @@ public class NewArtificalIntellegenceTest {
   @Test
   void takeShots() {
     //shots w boats
-    List<Coord> shots = null;
+    List<Coord> shots;
 
     try {
       shots = ai.takeShots();
@@ -112,10 +115,10 @@ public class NewArtificalIntellegenceTest {
   private void testShotIsInBound(List<Coord> shots) {
     for (Coord shot : shots) {
       //confirming that they're all in range
-      assertTrue(shot.getX() >= 0);
-      assertTrue(shot.getX() < ai.getBoard().length);
-      assertTrue(shot.getY() >= 0);
-      assertTrue(shot.getY() < ai.getBoard()[0].length);
+      assertTrue(shot.getAxisX() >= 0);
+      assertTrue(shot.getAxisX() < ai.getBoard().length);
+      assertTrue(shot.getAxisY() >= 0);
+      assertTrue(shot.getAxisY() < ai.getBoard()[0].length);
     }
   }
 }

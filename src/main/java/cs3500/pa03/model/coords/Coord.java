@@ -8,8 +8,10 @@ import java.util.NoSuchElementException;
  * Coordinates on the board
  */
 public class Coord {
-  private final int x;
-  private final int y;
+  @JsonProperty("x")
+  private final int axisX;
+  @JsonProperty("y")
+  private final int axisY;
   private final boolean spotInUse;
   private final Ship ship;
   private boolean spotHit;
@@ -17,13 +19,13 @@ public class Coord {
   /**
    * Setups the coords
    *
-   * @param x the x coordinate
-   * @param y the y coordinate
+   * @param axisX the x coordinate
+   * @param axisY the y coordinate
    */
-  public Coord(@JsonProperty("x") int x,
-               @JsonProperty("y") int y) {
-    this.x = x;
-    this.y = y;
+  public Coord(@JsonProperty("x") int axisX,
+               @JsonProperty("y") int axisY) {
+    this.axisX = axisX;
+    this.axisY = axisY;
     this.spotInUse = false;
     this.ship = null;
     this.spotHit = false;
@@ -32,13 +34,13 @@ public class Coord {
   /**
    * Setups the coords with ship taking the spot
    *
-   * @param x the x coordinate
-   * @param y the y coordinate
+   * @param axisX the x coordinate
+   * @param axisY the y coordinate
    * @param ship the ship
    */
-  public Coord(int x, int y, Ship ship) {
-    this.x = x;
-    this.y = y;
+  public Coord(int axisX, int axisY, Ship ship) {
+    this.axisX = axisX;
+    this.axisY = axisY;
     this.spotInUse = true;
     this.ship = ship;
     this.spotHit = false;
@@ -49,8 +51,8 @@ public class Coord {
    *
    * @return the x coordinate
    */
-  public int getX() {
-    return x;
+  public int getAxisX() {
+    return axisX;
   }
 
   /**
@@ -58,8 +60,8 @@ public class Coord {
    *
    * @return the y coordinate
    */
-  public int getY() {
-    return y;
+  public int getAxisY() {
+    return axisY;
   }
 
   /**
@@ -109,6 +111,6 @@ public class Coord {
    * @return a string of the coordinates
    */
   public String toString() {
-    return String.format("(%d, %d)", x, y);
+    return String.format("(%d, %d)", axisX, axisY);
   }
 }
