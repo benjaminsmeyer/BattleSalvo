@@ -39,6 +39,7 @@ public class ArtificialIntelligence extends PlayerImpl {
    */
   @Override
   public List<Coord> takeShots() {
+    System.out.println("shot taken");
     List<Coord> shots = new ArrayList<>();
     int amountAvailable = countAvailableSpots(opponentBoard);
     int count = Math.min(amountAvailable, fleetSize);
@@ -114,6 +115,8 @@ public class ArtificialIntelligence extends PlayerImpl {
    * @return the locations of a shot on the opponent's board
    */
   private Coord randomGuess() {
+    //implement parity
+    //every even col, every row
     Coord coord = null;
     while (coord == null || allShots.containsKey(coord.toString())) {
       int x = random.nextInt(0, width);
