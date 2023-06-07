@@ -18,6 +18,8 @@ public class Mocket extends Socket {
   private final ByteArrayOutputStream testLog;
 
   /**
+   * Setups the mocket for testing.
+   *
    * @param testLog what the server has received from the client
    * @param toSend what the server will send to the client
    */
@@ -33,11 +35,21 @@ public class Mocket extends Socket {
     this.testInputs = new ByteArrayInputStream(stringWriter.toString().getBytes());
   }
 
+  /**
+   * Gets the input stream
+   *
+   * @return the input stream
+   */
   @Override
   public InputStream getInputStream() {
     return this.testInputs;
   }
 
+  /**
+   * Gets the output stream
+   *
+   * @return the output stream
+   */
   @Override
   public OutputStream getOutputStream() {
     return this.testLog;
