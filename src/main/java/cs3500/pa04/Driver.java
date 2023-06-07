@@ -39,6 +39,7 @@ public class Driver {
    *
    * @param args The expected parameters are the server's host and port
    */
+
   public static void main(String[] args) {
     if (args.length == 0) {
       runTerminalGame();
