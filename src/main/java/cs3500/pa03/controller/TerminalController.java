@@ -70,6 +70,7 @@ public class TerminalController {
         attack();
         shipsInWater = player.getFleetSize() > 0 && robot.getFleetSize() > 0;
       }
+
       if (player.getFleetSize() > 0) {
         playerWins();
       } else if (robot.getFleetSize() > 0) {
