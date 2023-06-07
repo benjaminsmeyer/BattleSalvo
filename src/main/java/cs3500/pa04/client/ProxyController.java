@@ -126,6 +126,7 @@ public class ProxyController {
     }
     MessageJson messageJson = new MessageJson("end-game", VOID_RESPONSE);
     JsonNode jsonResponse = JsonUtils.serializeRecord(messageJson);
+
     this.out.println(jsonResponse);
   }
 
@@ -138,8 +139,10 @@ public class ProxyController {
     SuccessfulHitsJson successfulHitsJson = this.mapper.convertValue(arguments,
         SuccessfulHitsJson.class);
     player.successfulHits(successfulHitsJson.volley());
+
     MessageJson messageJson = new MessageJson("successful-hits", VOID_RESPONSE);
     JsonNode jsonResponse = JsonUtils.serializeRecord(messageJson);
+
     this.out.println(jsonResponse);
   }
 
@@ -151,14 +154,19 @@ public class ProxyController {
   private void handleSetup(JsonNode arguments) {
     SetupJson args = this.mapper.convertValue(arguments, SetupJson.class);
     Map<ShipType, Integer> fleet = new HashMap<>();
+
     for (String ship : args.specs().keySet()) {
       fleet.put(ShipType.valueOf(ship), args.specs().get(ship));
     }
+
     List<Ship> ships = player.setup(args.height(), args.width(), fleet);
     ShipJson[] shipCoords = getPlayerShips(ships);
+
     FleetJson response = new FleetJson(shipCoords);
     JsonNode jsonResponse = JsonUtils.serializeRecord(response);
+
     MessageJson messageJson = new MessageJson("setup", jsonResponse);
+
     jsonResponse = JsonUtils.serializeRecord(messageJson);
     this.out.println(jsonResponse);
   }
@@ -187,8 +195,10 @@ public class ProxyController {
     ReportDamageJson reportDamageJson = this.mapper.convertValue(arguments, ReportDamageJson.class);
     List<Coord> damageCoords = player.reportDamage(reportDamageJson.volley());
     ReportDamageJson response = new ReportDamageJson(damageCoords);
+
     JsonNode jsonResponse = JsonUtils.serializeRecord(response);
     MessageJson messageJson = new MessageJson("report-damage", jsonResponse);
+
     jsonResponse = JsonUtils.serializeRecord(messageJson);
     this.out.println(jsonResponse);
   }
@@ -199,7 +209,9 @@ public class ProxyController {
   private void handleJoin() {
     JoinJson response = new JoinJson(name, GAME_TYPE_SINGLE);
     JsonNode jsonResponse = JsonUtils.serializeRecord(response);
+
     MessageJson messageJson = new MessageJson("join", jsonResponse);
+
     jsonResponse = JsonUtils.serializeRecord(messageJson);
     this.out.println(jsonResponse);
   }
@@ -217,7 +229,9 @@ public class ProxyController {
 
     TakeShotsJson response = new TakeShotsJson(takeShots);
     JsonNode jsonResponse = JsonUtils.serializeRecord(response);
+
     MessageJson messageJson = new MessageJson("take-shots", jsonResponse);
+
     jsonResponse = JsonUtils.serializeRecord(messageJson);
     this.out.println(jsonResponse);
   }
