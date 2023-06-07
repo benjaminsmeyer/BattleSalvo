@@ -122,9 +122,9 @@ public abstract class PlayerImpl implements PlayerExtend {
         if (!current.spotTaken().shipInWater()) {
           fleetSize--;
         }
-        board[current.getY()][current.getX()] = HIT;
+        board[current.getAxisY()][current.getAxisX()] = HIT;
       } else {
-        board[current.getY()][current.getX()] = MISS;
+        board[current.getAxisY()][current.getAxisX()] = MISS;
       }
     }
     return coords;
@@ -139,7 +139,7 @@ public abstract class PlayerImpl implements PlayerExtend {
   @Override
   public void successfulHits(List<Coord> shotsThatHitOpponentShips) {
     for (Coord coord : shotsThatHitOpponentShips) {
-      opponentBoard[coord.getY()][coord.getX()] = HIT;
+      opponentBoard[coord.getAxisY()][coord.getAxisX()] = HIT;
     }
   }
 
